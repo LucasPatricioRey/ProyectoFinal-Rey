@@ -145,7 +145,7 @@ const productos = [
     {
         id: "ibu-05",
         titulo: "IbuEvanol Max",
-        imagen: "./img/Ibu/IbuEvanol-max.png",
+        imagen: "./img/Ibu/IbuEvanolmax.png",
         categoria: {
             nombre: "Ibu",
             id: "ibu",
