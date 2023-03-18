@@ -1,158 +1,11 @@
-const productos = [
-    // Actron
-    {
-        id: "actron-01",
-        titulo: "Actron 400",
-        imagen: "./img/Actron/Actron-400.png",
-        categoria: {
-            nombre: "Actron",
-            id: "actron",
-        },
-        precio: 430
-    },
-    {
-        id: "actron-02",
-        titulo: "Actron 600",
-        imagen: "./img/Actron/Actron-600.png",
-        categoria: {
-            nombre: "Actron",
-            id: "actron",
-        },
-        precio: 685
-    },
-    {
-        id: "actron-03",
-        titulo: "Actron Plus",
-        imagen: "./img/Actron/Actron-plus.png",
-        categoria: {
-            nombre: "Actron",
-            id: "actron",
-        },
-        precio: 550
-    },
-    {
-        id: "actron-04",
-        titulo: "Actron Gel",
-        imagen: "./img/Actron/Actron-gel.png",
-        categoria: {
-            nombre: "Actron",
-            id: "actron",
-        },
-        precio: 925
-    },
-    {
-        id: "actron-05",
-        titulo: "Actron Pediatrico 2%",
-        imagen: "./img/Actron/Actron-pediatrico.png",
-        categoria: {
-            nombre: "Actron",
-            id: "actron",
-        },
-        precio: 1030
-    },
-    // Ibupirac
-    {
-        id: "ibupirac-01",
-        titulo: "Ibupirac 400",
-        imagen: "./img/Ibupirac/Ibupirac-400.png",
-        categoria: {
-            nombre: "Ibupirac",
-            id: "ibupirac",
-        },
-        precio: 530
-    },
-    {
-        id: "ibupirac-02",
-        titulo: "Ibupirac 600",
-        imagen: "./img/Ibupirac/Ibupirac-600.png",
-        categoria: {
-            nombre: "Ibupirac",
-            id: "ibupirac",
-        },
-        precio: 785
-    },
-    {
-        id: "ibupirac-03",
-        titulo: "Ibupirac Fem",
-        imagen: "./img/Ibupirac/Ibupirac-fem.png",
-        categoria: {
-            nombre: "Ibupirac",
-            id: "ibupirac",
-        },
-        precio: 550
-    },
-    {
-        id: "ibupirac-04",
-        titulo: "Ibupirac Flex 600",
-        imagen: "./img/Ibupirac/Ibupirac-flex-600.png",
-        categoria: {
-            nombre: "Ibupirac",
-            id: "ibupirac",
-        },
-        precio: 830
-    },
-    {
-        id: "ibupirac-05",
-        titulo: "Ibupirac Plus Max",
-        imagen: "./img/Ibupirac/Ibupirac-plus-max.png",
-        categoria: {
-            nombre: "Ibupirac",
-            id: "ibupirac",
-        },
-        precio: 1080
-    },
-    // Ibu
-    {
-        id: "ibu-01",
-        titulo: "Ibu 400",
-        imagen: "./img/Ibu/Ibu-400.png",
-        categoria: {
-            nombre: "Ibu",
-            id: "ibu",
-        },
-        precio: 330
-    },
-    {
-        id: "ibu-02",
-        titulo: "Ibu 600",
-        imagen: "./img/Ibu/Ibu-600.png",
-        categoria: {
-            nombre: "Ibu",
-            id: "ibu",
-        },
-        precio: 462
-    },
-    {
-        id: "ibu-03",
-        titulo: "IbuEvanbol",
-        imagen: "./img/Ibu/IbuEvanol.png",
-        categoria: {
-            nombre: "Ibu",
-            id: "ibu",
-        },
-        precio: 500
-    },
-    {
-        id: "ibu-04",
-        titulo: "IbuEvanol Forte",
-        imagen: "./img/Ibu/IbuEvanol-forte.png",
-        categoria: {
-            nombre: "Ibu",
-            id: "ibu",
-        },
-        precio: 635
-    },
-    {
-        id: "ibu-05",
-        titulo: "IbuEvanol Max",
-        imagen: "./img/Ibu/IbuEvanolmax.png",
-        categoria: {
-            nombre: "Ibu",
-            id: "ibu",
-        },
-        precio: 840
-    },
-];
+let productos = [];
+
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -223,6 +76,26 @@ if (productosEnCarritoLS) {
 
 
 function agregarAlCarrito(e) {
+
+    Toastify({
+        text: "Producto agregado",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+            background: "linear-gradient(to right, #fa9600, #e7c99c)",
+            borderRadius: "2rem",
+            textTransform: "uppercase",
+            fontSize: ".75rem"
+        },
+        offset: {
+            x: '1.5rem',
+            y: '1.5rem' 
+            },
+        onClick: function(){}
+        }).showToast();
 
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
